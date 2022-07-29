@@ -3,7 +3,7 @@ import { Button, Layout } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { useState, useEffect } from 'react'
 import { lazy } from 'react'
-import { HashRouter, Route, Router, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import JarvisLogo from '@/components/logo'
 import JarvisMenu from '@/components/menu'
 import './JarvisLayout.less'
@@ -23,8 +23,6 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
 
   const [routerItems, setRouterItems] = useState<RouterItem[]>([])
 
-  const Test = lazy(() => import('@/pages/dashboard/analysis'))
-
   // 根据菜单配置生成路由配置
   const buildRouter = (menuConfig: ItemType[]) => {
     let routers: RouterItem[] = []
@@ -42,11 +40,8 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
   }
   useEffect(() => {
     setRouterItems(buildRouter(menuConfig))
-  }, [menuConfig])
-
-  useEffect(() => {
-    console.log('routerItems ', routerItems)
-  }, [routerItems])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Layout className='Layout'>
@@ -70,21 +65,18 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
         </Sider>
         <Layout>
           <Content>
-            <HashRouter>
-              <Routes>
-                <Route path='/' element={<div>Home</div>} />
-                <Route path='/page1' element={<div>page1</div>} />
-                <Route path='/dashboard' element={<Test />} />
-
-                {/* {routerItems.map((item: RouterItem) => {
-                  return (
-                    <Route key={item.path} path={item.path}>
-                      {React.createElement(item.content)}
-                    </Route>
-                  )
-                })} */}
-              </Routes>
-            </HashRouter>
+            <Routes>
+              {routerItems.map((item: RouterItem) => {
+                return (
+                  <Route
+                    key={item.path}
+                    path={item.path}
+                    element={React.createElement(item.content)}
+                  />
+                )
+              })}
+              <Route path='*' element={<div>404</div>} />
+            </Routes>
           </Content>
           <Footer>Footer</Footer>
         </Layout>
