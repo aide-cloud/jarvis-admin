@@ -69,14 +69,11 @@ const Account: React.FC<AccountProps> = ({ userInfo }) => {
       trigger={['click']}
       placement='bottomLeft'
     >
-      <Button
-        type='link'
-        icon={
-          <Badge dot>
-            <Avatar shape='square' icon={<UserOutlined />} />
-          </Badge>
-        }
-      />
+      <Button type='link'>
+        <Badge dot>
+          <Avatar shape='square' icon={<UserOutlined />} />
+        </Badge>
+      </Button>
     </Dropdown>
   )
 }

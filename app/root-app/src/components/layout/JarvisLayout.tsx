@@ -1,4 +1,8 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  SettingOutlined,
+} from '@ant-design/icons'
 import { Button, Col, Layout, Row, Space } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { useState, Suspense } from 'react'
@@ -33,7 +37,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
           </Col>
           <Col span={20} className='Col-20'>
             <Space size={4} className='Space'>
-              <Button type='primary'>设置</Button>
+              <Button type='primary' icon={<SettingOutlined />} />
               <JarvisAccount />
             </Space>
           </Col>
