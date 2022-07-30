@@ -29,7 +29,7 @@ export interface userAccessType {
 const App: React.FC = () => {
   const [routerItems, setRouterItems] = useState<RouterItem[]>([])
   const [userAccess, setUserAccess] = useState<userAccessType>({
-    routers: ['/home', '/dashboard/analysis'],
+    routers: ['/', '/home', '/dashboard/analysis'],
     detail: {},
   })
 
