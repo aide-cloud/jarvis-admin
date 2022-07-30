@@ -1,4 +1,4 @@
-import { Breadcrumb } from 'antd'
+import { Breadcrumb, Button } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -44,14 +44,20 @@ export const JarvisBreadcrumb: React.FC<JarvisBreadcrumbProps> = ({
 
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
-    return <Breadcrumb.Item key={url}>{breadcrumbNameMap[url]}</Breadcrumb.Item>
+    return (
+      <Breadcrumb.Item key={url}>
+        <Button type='link'>{breadcrumbNameMap[url]}</Button>
+      </Breadcrumb.Item>
+    )
   })
 
   const breadcrumbItems = [
     <Breadcrumb.Item key='home'>
-      <Link to='/'>首页</Link>
+      <Button type='link'>
+        <Link to='/'>首页</Link>
+      </Button>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems)
 
-  return <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+  return <Breadcrumb className='Breadcrumb'>{breadcrumbItems}</Breadcrumb>
 }

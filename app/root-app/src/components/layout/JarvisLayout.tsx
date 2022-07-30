@@ -65,7 +65,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
               <Outlet />
             </Suspense>
           </Content>
-          <Footer>Footer</Footer>
+          <Footer className='Footer'>Footer</Footer>
         </Layout>
       </Layout>
     </Layout>

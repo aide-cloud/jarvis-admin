@@ -30,7 +30,7 @@ export interface AccountInfo {
 const Account: React.FC<AccountProps> = ({ userInfo }) => {
   const navigate = useNavigate()
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.clear()
     navigate('/account/login')
   }
   const menu = (
