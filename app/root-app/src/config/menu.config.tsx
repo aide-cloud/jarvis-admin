@@ -7,6 +7,12 @@ import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { Link } from 'react-router-dom'
 
 const MenuConfig = [
+  // 首页
+  {
+    key: '/home',
+    icon: <DashboardOutlined />,
+    label: <Link to='/home'>首页</Link>,
+  },
   // 仪表盘
   {
     key: '/dashboard',
