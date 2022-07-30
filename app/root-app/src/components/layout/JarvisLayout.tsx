@@ -1,12 +1,14 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Button, Layout, Space } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
-import React, { useState, useEffect, Suspense } from 'react'
-import { lazy } from 'react'
-import { Outlet, Route, Routes } from 'react-router-dom'
+import React, { useState, Suspense } from 'react'
+
+import { Outlet } from 'react-router-dom'
 import JarvisLogo from '@/components/logo'
 import JarvisMenu from '@/components/menu'
-import JarvisAccount from '@/pages/account'
+import JarvisAccount from '@/components/account'
+
+import { JarvisBreadcrumb } from '../breadcrumb/JarvisBreadcrumb'
 import './JarvisLayout.less'
 
 export interface JarvisLayoutProps {
@@ -48,6 +50,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
         <Layout>
           <Content>
             <Suspense fallback={<div>Loading...</div>}>
+              <JarvisBreadcrumb menuConfig={menuConfig} />
               <Outlet />
             </Suspense>
           </Content>
