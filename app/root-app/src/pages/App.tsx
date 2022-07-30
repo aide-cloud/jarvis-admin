@@ -25,12 +25,17 @@ export interface RouterItem {
   content: any
 }
 
+export interface userAccessType {
+  routers: string[]
+  detail: { [key: string]: string[] }
+}
+
 const App: React.FC = () => {
   const [routerItems, setRouterItems] = useState<RouterItem[]>([])
-  const [userAccess, setUserAccess] = useState<string[]>([
-    '/home',
-    '/dashboard/analysis',
-  ])
+  const [userAccess, setUserAccess] = useState<userAccessType>({
+    routers: ['/home', '/dashboard/analysis'],
+    detail: {},
+  })
 
   const noAuthRouterItems: RouterItem[] = [
     {
@@ -75,7 +80,7 @@ const App: React.FC = () => {
                 <JarvisLayout
                   menuConfig={MenuConfig}
                   routerConfig={routerItems}
-                  userAccess={userAccess}
+                  userAccess={userAccess.routers}
                 />
               }
             >
