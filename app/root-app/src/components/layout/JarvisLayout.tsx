@@ -7,17 +7,19 @@ import { Button, Col, Layout, Row, Space } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { useState, Suspense } from 'react'
 
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import JarvisLogo from '@/components/logo'
 import JarvisMenu from '@/components/menu'
 import JarvisAccount from '@/components/account'
 
 import { JarvisBreadcrumb } from '../breadcrumb/JarvisBreadcrumb'
 import './JarvisLayout.less'
+import Access from '../account/access'
 
 export interface JarvisLayoutProps {
   menuConfig: ItemType[]
   routerConfig: RouterItem[]
+  userAccess?: string[]
 }
 
 export interface RouterItem {
@@ -29,8 +31,14 @@ const { Header, Footer, Sider, Content } = Layout
 const JarvisLayout: React.FC<JarvisLayoutProps> = ({
   menuConfig,
   routerConfig,
+  userAccess = [],
 }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false)
+  const location = useLocation()
+
+  const isAccess = (path: string) => {
+    return userAccess.includes(path)
+  }
 
   return (
     <Layout className='Layout'>
@@ -67,7 +75,11 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
           <Content>
             <Suspense fallback={<div>Loading...</div>}>
               <JarvisBreadcrumb menuConfig={menuConfig} />
-              <Outlet />
+              <Access
+                hasAccess={isAccess(location.pathname)}
+                children={<Outlet />}
+              />
+              {/* <Outlet /> */}
             </Suspense>
           </Content>
           <Footer className='Footer'>Footer</Footer>

@@ -1,3 +1,4 @@
+import { Error404 } from '@/components/error-page/error-404'
 import MenuConfig from '@/config/menu.config'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
@@ -9,7 +10,13 @@ import React, {
   useState,
   createElement,
 } from 'react'
-import { HashRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from 'react-router-dom'
 import JarvisLayout from '../components/layout'
 import './App.less'
 
@@ -20,6 +27,10 @@ export interface RouterItem {
 
 const App: React.FC = () => {
   const [routerItems, setRouterItems] = useState<RouterItem[]>([])
+  const [userAccess, setUserAccess] = useState<string[]>([
+    '/home',
+    '/dashboard/analysis',
+  ])
 
   const noAuthRouterItems: RouterItem[] = [
     {
@@ -47,6 +58,7 @@ const App: React.FC = () => {
     })
     return routers
   }
+
   useEffect(() => {
     setRouterItems([...buildRouter(MenuConfig)])
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,7 +66,7 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider locale={zhCN}>
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route
@@ -63,6 +75,7 @@ const App: React.FC = () => {
                 <JarvisLayout
                   menuConfig={MenuConfig}
                   routerConfig={routerItems}
+                  userAccess={userAccess}
                 />
               }
             >
@@ -87,10 +100,10 @@ const App: React.FC = () => {
               ))}
             </Route>
 
-            <Route path='*' element={<div>404</div>} />
+            <Route path='*' element={<Error404 />} />
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     </ConfigProvider>
   )
 }
