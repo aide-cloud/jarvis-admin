@@ -2,10 +2,15 @@ import MenuConfig from '@/config/menu.config'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import React, { lazy, useEffect, useState } from 'react'
-import { HashRouter, Outlet, Route, Routes } from 'react-router-dom'
+import React, {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  createElement,
+} from 'react'
+import { HashRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import JarvisLayout from '../components/layout'
-import Login from './account/login/Login'
 import './App.less'
 
 export interface RouterItem {
@@ -47,49 +52,36 @@ const App: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const reg = React.createElement(
-    lazy(() => import('@/pages/account/register'))
-  )
-
   return (
     <ConfigProvider locale={zhCN}>
       <HashRouter>
-        <Routes>
-          {/* <Route path='/' element={<JarvisLayout menuConfig={MenuConfig} />}>
-            {routerItems.map((item: RouterItem) => (
-              <Route
-                key={item.path}
-                path={item.path}
-                element={React.createElement(item.content)}
-              />
-            ))}
-          </Route> */}
-          {/* {noAuthRouterItems.map((item: RouterItem) => (
-            <Route
-              key={item.path}
-              path={item.path}
-              // element={React.createElement(item.content)}
-              element={<Login />}
-            />
-          ))} */}
-          <Route
-            path='/account'
-            element={
-              <div>
-                <Outlet />
-              </div>
-            }
-          >
-            <Route
-              path='/account/register'
-              key={'/account/register'}
-              element={reg}
-            />
-            <Route path='/account/login' element={<h1>login</h1>} />
-          </Route>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path='/' element={<JarvisLayout menuConfig={MenuConfig} />}>
+              {routerItems.map((item: RouterItem) => (
+                <Route
+                  key={item.path}
+                  path={item.path}
+                  element={createElement(item.content)}
+                />
+              ))}
 
-          <Route path='*' element={<div>404</div>} />
-        </Routes>
+              <Route path='/' element={<Navigate to='/home' />} />
+            </Route>
+
+            <Route path='/account' element={<Outlet />}>
+              {noAuthRouterItems.map((item: RouterItem) => (
+                <Route
+                  key={item.path}
+                  path={item.path}
+                  element={createElement(item.content)}
+                />
+              ))}
+            </Route>
+
+            <Route path='*' element={<div>404</div>} />
+          </Routes>
+        </Suspense>
       </HashRouter>
     </ConfigProvider>
   )
