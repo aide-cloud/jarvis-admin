@@ -57,7 +57,15 @@ const App: React.FC = () => {
       <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path='/' element={<JarvisLayout menuConfig={MenuConfig} />}>
+            <Route
+              path='/'
+              element={
+                <JarvisLayout
+                  menuConfig={MenuConfig}
+                  routerConfig={routerItems}
+                />
+              }
+            >
               {routerItems.map((item: RouterItem) => (
                 <Route
                   key={item.path}

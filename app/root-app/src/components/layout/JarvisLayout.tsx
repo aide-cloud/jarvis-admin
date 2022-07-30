@@ -17,6 +17,7 @@ import './JarvisLayout.less'
 
 export interface JarvisLayoutProps {
   menuConfig: ItemType[]
+  routerConfig: RouterItem[]
 }
 
 export interface RouterItem {
@@ -25,7 +26,10 @@ export interface RouterItem {
 }
 
 const { Header, Footer, Sider, Content } = Layout
-const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
+const JarvisLayout: React.FC<JarvisLayoutProps> = ({
+  menuConfig,
+  routerConfig,
+}) => {
   const [collapsed, setCollapsed] = useState<boolean>(false)
 
   return (
@@ -50,6 +54,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({ menuConfig }) => {
             menuConfig={menuConfig}
             mode='inline'
             height={'calc(100% - 32px)'}
+            routerConfig={routerConfig}
           />
           <Button
             className='Button'
