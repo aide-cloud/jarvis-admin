@@ -7975,11 +7975,6 @@ react-router-dom@^6.3.0:
     history "^5.2.0"
     react-router "6.3.0"
 
-react-router-middleware-plus@^1.2.0:
-  version "1.2.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/react-router-middleware-plus/-/react-router-middleware-plus-1.2.0.tgz#89e0aa482fb948b4b79621f6a3ba12166cc71702"
-  integrity sha512-hVnvfxlP1ui9NmsDcA3jGzI4vOsTNCQwAwBREb/fJPO1123pZOg4gph/XxPWG2Y3i0BoYxg2OymV6cn6Lpku6Q==
-
 react-router@6.3.0:
   version "6.3.0"
   resolved "https://mirrors.tencent.com/npm/react-router/-/react-router-6.3.0.tgz#3970cc64b4cb4eae0c1ea5203a80334fdd175557"
