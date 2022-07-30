@@ -7,7 +7,7 @@ import { Button, Col, Layout, Row, Space } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
 import React, { useState, Suspense } from 'react'
 
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, RouteObject, useLocation } from 'react-router-dom'
 import JarvisLogo from '@/components/logo'
 import JarvisMenu from '@/components/menu'
 import JarvisAccount from '@/components/account'
@@ -22,10 +22,7 @@ export interface JarvisLayoutProps {
   userAccess?: string[]
 }
 
-export interface RouterItem {
-  path: string
-  content: any
-}
+export type RouterItem = RouteObject
 
 const { Header, Footer, Sider, Content } = Layout
 const JarvisLayout: React.FC<JarvisLayoutProps> = ({
@@ -79,7 +76,6 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
                 hasAccess={isAccess(location.pathname)}
                 children={<Outlet />}
               />
-              {/* <Outlet /> */}
             </Suspense>
           </Content>
           <Footer className='Footer'>Footer</Footer>

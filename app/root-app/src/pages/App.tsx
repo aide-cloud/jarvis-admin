@@ -1,4 +1,5 @@
 import { Error404 } from '@/components/error-page/error-404'
+import { RouterItem } from '@/components/layout/JarvisLayout'
 import MenuConfig from '@/config/menu.config'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
@@ -20,11 +21,6 @@ import {
 import JarvisLayout from '../components/layout'
 import './App.less'
 
-export interface RouterItem {
-  path: string
-  content: any
-}
-
 export interface userAccessType {
   routers: string[]
   detail: { [key: string]: string[] }
@@ -40,11 +36,11 @@ const App: React.FC = () => {
   const noAuthRouterItems: RouterItem[] = [
     {
       path: '/account/login',
-      content: lazy(() => import('@/pages/account/login')),
+      element: createElement(lazy(() => import('@/pages/account/login'))),
     },
     {
       path: '/account/register',
-      content: lazy(() => import('@/pages/account/register')),
+      element: createElement(lazy(() => import('@/pages/account/register'))),
     },
   ]
 
@@ -58,7 +54,7 @@ const App: React.FC = () => {
       }
       routers.push({
         path: item.key,
-        content: lazy(() => import('@/pages' + item.key)) || '',
+        element: createElement(lazy(() => import('@/pages' + item.key)) || ''),
       })
     })
     return routers
@@ -88,7 +84,7 @@ const App: React.FC = () => {
                 <Route
                   key={item.path}
                   path={item.path}
-                  element={createElement(item.content)}
+                  element={item.element}
                 />
               ))}
 
@@ -100,7 +96,7 @@ const App: React.FC = () => {
                 <Route
                   key={item.path}
                   path={item.path}
-                  element={createElement(item.content)}
+                  element={item.element}
                 />
               ))}
             </Route>
