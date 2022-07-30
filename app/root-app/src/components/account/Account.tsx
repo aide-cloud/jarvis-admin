@@ -72,7 +72,7 @@ const Account: React.FC<AccountProps> = ({ userInfo }) => {
       <Button
         type='link'
         icon={
-          <Badge count={1}>
+          <Badge dot>
             <Avatar shape='square' icon={<UserOutlined />} />
           </Badge>
         }

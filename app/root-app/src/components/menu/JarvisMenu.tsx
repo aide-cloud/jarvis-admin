@@ -15,7 +15,14 @@ const JarvisMenu: React.FC<JarvisMenuProps> = ({
   mode,
   height,
 }) => {
-  return <Menu style={{ height: height }} items={menuConfig} mode={mode} />
+  return (
+    <Menu
+      className='Menu'
+      style={{ height: height }}
+      items={menuConfig}
+      mode={mode}
+    />
+  )
 }
 
 export default JarvisMenu
