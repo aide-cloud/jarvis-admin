@@ -1,4 +1,5 @@
 import {
+  DownOutlined,
   LockOutlined,
   PoweroffOutlined,
   SoundOutlined,
@@ -70,9 +71,8 @@ const Account: React.FC<AccountProps> = ({ userInfo }) => {
       placement='bottomLeft'
     >
       <Button type='link'>
-        <Badge dot>
-          <Avatar shape='square' icon={<UserOutlined />} />
-        </Badge>
+        {localStorage.getItem('username')}
+        <DownOutlined />
       </Button>
     </Dropdown>
   )
