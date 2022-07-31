@@ -1,44 +1,60 @@
-.Login {
-  margin: 0;
-  padding: 0;
+.root {
   height: 100vh;
   width: 100vw;
-  align-items: center;
-  justify-content: center;
-  background-image: url(../../../backgroud-image.jpg);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-
-  // 内容居中
-  .content {
-    height: 400px;
-    width: 600px;
-
-    // 内容背景色
-    background-color: #d8e6df;
-    // 内容边框
-    border: 1px solid #d8e6df;
-    // 内容边框圆角
-    border-radius: 5px;
-    // 内容边框阴影
-    box-shadow: 0 0 10px rgba(178, 217, 199, 100);
-
+  padding: 0;
+  margin: 0;
+  .Login {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
     align-items: center;
     justify-content: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-    .title {
-      font-size: 35px;
-      color: #1da57a;
-      font-weight: bold;
-      text-align: center;
+    .Space-Title {
+      width: 100%;
+      .logo {
+      }
+      .title {
+        height: 64px;
+        width: 100%;
+        font-size: 35px;
+        color: #1da57a;
+        font-weight: bold;
+        text-align: center;
+      }
     }
-    .Form {
-      margin: 0;
-      // 内容宽度
-      width: 400px;
-      // 内容高度
+
+    // 内容居中
+    .content {
       height: 400px;
-      text-align: right;
+      width: 600px;
+
+      // 内容背景色
+      background-color: #d8e6df;
+      // 内容边框
+      border: 1px solid #d8e6df;
+      // 内容边框圆角
+      border-radius: 5px;
+      // 内容边框阴影
+      box-shadow: 0 0 10px rgba(178, 217, 199, 100);
+      align-items: center;
+      justify-content: center;
+
+      .Form {
+        margin: 0;
+        // 内容宽度
+        width: 400px;
+        // 内容高度
+        height: 400px;
+        text-align: right;
+      }
+    }
+
+    .footer {
+      bottom: 0;
     }
   }
 }
