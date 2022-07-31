@@ -2,13 +2,20 @@ import JarvisLogo from '@/components/logo'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Space, Form, Input, Button } from 'antd'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import login from '../login'
-import { JarvisFooter } from '../login/Login'
+import { Link, useNavigate } from 'react-router-dom'
+import { JarvisFooter, UserInfo } from '../login/Login'
 
 import './Register.less'
 
 const Register: React.FC = () => {
+  const navigate = useNavigate()
+
+  const register = (userInfo: UserInfo) => {
+    console.log('userInfo', userInfo)
+    localStorage.setItem('username', userInfo.username)
+    navigate('/', { replace: true })
+  }
+
   return (
     <Space direction='vertical' size={24} className='root'>
       <Space size={4} className='Register' align='center' direction='vertical'>
@@ -18,7 +25,7 @@ const Register: React.FC = () => {
           </div>
           <div className='title'>Register</div>
         </Space>
-        <Form onFinish={login} className='Form' size='large'>
+        <Form onFinish={register} className='Form' size='large'>
           <Form.Item
             name='username'
             rules={[{ required: true, message: 'Please input your username!' }]}
