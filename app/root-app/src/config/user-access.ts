@@ -21,6 +21,7 @@ export default [
       '/personal/my-collection',
       '/personal/my-subscription',
       '/personal/my-device',
+      '/version',
     ],
     detail: {},
   },

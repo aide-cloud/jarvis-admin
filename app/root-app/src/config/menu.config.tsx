@@ -1,6 +1,7 @@
 import {
   DashboardOutlined,
   MonitorOutlined,
+  RocketOutlined,
   SmileOutlined,
   UserOutlined,
 } from '@ant-design/icons'
@@ -113,6 +114,12 @@ const MenuConfig = [
         label: <Link to='/personal/my-device'>我的设备</Link>,
       },
     ],
+  },
+  // 版本管理
+  {
+    key: '/version',
+    label: <Link to='/version'>版本管理</Link>,
+    icon: <RocketOutlined />,
   },
 ] as ItemType[]
 
