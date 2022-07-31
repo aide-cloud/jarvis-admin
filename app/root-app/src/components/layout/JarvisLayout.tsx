@@ -69,7 +69,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
           />
         </Sider>
         <Layout>
-          <Content>
+          <Content className='Content'>
             <Suspense fallback={<div>Loading...</div>}>
               <JarvisBreadcrumb menuConfig={menuConfig} />
               <Access
@@ -78,7 +78,7 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
               />
             </Suspense>
           </Content>
-          <Footer className='Footer'>Footer</Footer>
+          <Footer className='Footer'>aide-cloud</Footer>
         </Layout>
       </Layout>
     </Layout>

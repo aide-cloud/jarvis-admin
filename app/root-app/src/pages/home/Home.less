@@ -1,0 +1,27 @@
+.home-root {
+  margin: 8px;
+  height: calc(100vh - 64px - 32px - 32px);
+  width: calc(100vw - 200px - 16px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .Todays-news {
+    width: 100%;
+
+    @card-heigth: 200px;
+
+    .greeting {
+      font-size: 22px;
+      color: #343844;
+    }
+
+    .child-card {
+      height: @card-heigth;
+      width: 410px;
+    }
+  }
+
+  .data-card {
+    width: 100%;
+  }
+}
