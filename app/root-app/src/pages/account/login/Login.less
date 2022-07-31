@@ -3,34 +3,32 @@
   width: 100vw;
   padding: 0;
   margin: 0;
+  // 渐变背景
+  background: linear-gradient(to bottom, #f5f5f5 0%, #f1f1f1 100%);
+  align-items: center;
+  justify-content: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   .Login {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-
     .Space-Title {
       width: 100%;
       .logo {
+        padding: 0;
       }
+
       .title {
         height: 64px;
-        width: 100%;
         font-size: 35px;
         color: #1da57a;
         font-weight: bold;
-        text-align: center;
       }
     }
 
-    // 内容居中
-    .content {
-      height: 400px;
-      width: 600px;
+    .Form {
+      margin: 0;
+      padding: 12px;
+      height: 200px;
+      width: 400px;
 
       // 内容背景色
       background-color: #d8e6df;
@@ -40,16 +38,10 @@
       border-radius: 5px;
       // 内容边框阴影
       box-shadow: 0 0 10px rgba(178, 217, 199, 100);
-      align-items: center;
-      justify-content: center;
-
-      .Form {
+      .Space {
+        width: 100%;
+        padding: 0;
         margin: 0;
-        // 内容宽度
-        width: 400px;
-        // 内容高度
-        height: 400px;
-        text-align: right;
       }
     }
 

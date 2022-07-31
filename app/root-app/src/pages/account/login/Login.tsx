@@ -1,8 +1,8 @@
 import JarvisLogo from '@/components/logo'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Form, Input, Space } from 'antd'
+import { Button, Col, Form, Input, Row, Space } from 'antd'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import './Login.less'
 
@@ -24,8 +24,8 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className='root'>
-      <Space size={4} className='Login' direction='vertical'>
+    <Space direction='vertical' size={24} className='root'>
+      <Space size={4} className='Login' align='center' direction='vertical'>
         <Space className='Space-Title'>
           <div className='logo'>
             <JarvisLogo />
@@ -43,28 +43,34 @@ const Login: React.FC = () => {
             name='password'
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password placeholder='Password' prefix={<LockOutlined />} />
+            <Input.Password
+              autoComplete='true'
+              placeholder='Password'
+              prefix={<LockOutlined />}
+            />
           </Form.Item>
-          <Space>
-            还有没有账号？
-            <Button type='link' onClick={toRegister}>
-              点这里注册
-            </Button>
-            <Form.Item>
-              <Button type='ghost' htmlType='reset'>
-                重置
-              </Button>
-            </Form.Item>
-            <Form.Item>
-              <Button type='primary' htmlType='submit'>
-                登陆
-              </Button>
-            </Form.Item>
+          <Space align='baseline' size={66} className='Space'>
+            <Space size={1} align='baseline'>
+              还有没有账号？
+              <Link to='/account/register'>点这里注册</Link>
+            </Space>
+            <Space align='baseline'>
+              <Form.Item>
+                <Button type='ghost' htmlType='reset' size='middle'>
+                  重置
+                </Button>
+              </Form.Item>
+              <Form.Item>
+                <Button type='primary' htmlType='submit' size='middle'>
+                  登陆
+                </Button>
+              </Form.Item>
+            </Space>
           </Space>
         </Form>
       </Space>
       <JarvisFooter />
-    </div>
+    </Space>
   )
 }
 
