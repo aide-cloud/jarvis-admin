@@ -1,6 +1,6 @@
 import JarvisLogo from '@/components/logo'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Col, Form, Input, Row, Space } from 'antd'
+import { Button, Form, Input, Space } from 'antd'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -19,10 +19,6 @@ const Login: React.FC = () => {
     navigate('/', { replace: true })
   }
 
-  const toRegister = () => {
-    navigate('/account/register', { replace: true })
-  }
-
   return (
     <Space direction='vertical' size={24} className='root'>
       <Space size={4} className='Login' align='center' direction='vertical'>
@@ -37,15 +33,22 @@ const Login: React.FC = () => {
             name='username'
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input placeholder='Username' prefix={<UserOutlined />} />
+            <Input
+              allowClear
+              className='Input'
+              placeholder='Username'
+              prefix={<UserOutlined />}
+            />
           </Form.Item>
           <Form.Item
             name='password'
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password
+              allowClear
               autoComplete='true'
               placeholder='Password'
+              className='Input'
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -74,7 +77,7 @@ const Login: React.FC = () => {
   )
 }
 
-const JarvisFooter = () => {
+export const JarvisFooter = () => {
   return (
     <div className='footer'>
       © 2021 - 2022 .
