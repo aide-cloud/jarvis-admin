@@ -17,6 +17,7 @@ import {
   Outlet,
   Route,
   Routes,
+  useNavigate,
 } from 'react-router-dom'
 import JarvisLayout from '../components/layout'
 import userAccessConfig from '@/config/user-access'
@@ -73,11 +74,15 @@ const App: React.FC = () => {
             <Route
               path='/'
               element={
-                <JarvisLayout
-                  menuConfig={MenuConfig}
-                  routerConfig={routerItems}
-                  userAccess={userAccess.routers}
-                />
+                localStorage.getItem('username') === null ? (
+                  <Navigate to='/account/login' />
+                ) : (
+                  <JarvisLayout
+                    menuConfig={MenuConfig}
+                    routerConfig={routerItems}
+                    userAccess={userAccess.routers}
+                  />
+                )
               }
             >
               {routerItems.map((item: RouterItem) => (

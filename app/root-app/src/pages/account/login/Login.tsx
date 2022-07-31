@@ -1,7 +1,7 @@
 import JarvisLogo from '@/components/logo'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Space } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import './Login.less'
@@ -14,10 +14,13 @@ export interface UserInfo {
 const Login: React.FC = () => {
   const navigate = useNavigate()
   const login = (userInfo: UserInfo) => {
-    console.log('userInfo', userInfo)
     localStorage.setItem('username', userInfo.username)
-    navigate('/', { replace: true })
+    navigate('/')
   }
+
+  useEffect(() => {
+    localStorage.clear()
+  }, [])
 
   return (
     <Space direction='vertical' size={24} className='root'>

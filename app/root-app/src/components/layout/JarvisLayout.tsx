@@ -5,9 +5,9 @@ import {
 } from '@ant-design/icons'
 import { Button, Col, Layout, Row, Space } from 'antd'
 import type { ItemType } from 'antd/lib/menu/hooks/useItems'
-import React, { useState, Suspense } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 
-import { Outlet, RouteObject, useLocation } from 'react-router-dom'
+import { Outlet, RouteObject, useLocation, useNavigate } from 'react-router-dom'
 import JarvisLogo from '@/components/logo'
 import JarvisMenu from '@/components/menu'
 import JarvisAccount from '@/components/account'
@@ -36,6 +36,25 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
   const isAccess = (path: string) => {
     return userAccess.includes(path)
   }
+
+  const navigate = useNavigate()
+
+  const [isLogin, setIsLogin] = useState<boolean>(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isLogin && localStorage.getItem('username') !== null) {
+        setIsLogin(true)
+      } else {
+        setIsLogin(false)
+        navigate('/account/login')
+        return
+      }
+    }, 5000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   return (
     <Layout className='Layout'>
