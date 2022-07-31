@@ -17,7 +17,6 @@ import {
   Outlet,
   Route,
   Routes,
-  useNavigate,
 } from 'react-router-dom'
 import JarvisLayout from '../components/layout'
 import userAccessConfig from '@/config/user-access'
@@ -61,6 +60,21 @@ const App: React.FC = () => {
     return routers
   }
 
+  const [isLogin, setIsLogin] = useState<boolean>(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (localStorage.getItem('username') !== null) {
+        setIsLogin(true)
+      } else {
+        setIsLogin(false)
+      }
+    }, 5000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+
   useEffect(() => {
     setRouterItems([...buildRouter(MenuConfig)])
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,15 +88,13 @@ const App: React.FC = () => {
             <Route
               path='/'
               element={
-                localStorage.getItem('username') === null ? (
-                  <Navigate to='/account/login' />
-                ) : (
-                  <JarvisLayout
-                    menuConfig={MenuConfig}
-                    routerConfig={routerItems}
-                    userAccess={userAccess.routers}
-                  />
-                )
+                <JarvisLayout
+                  menuConfig={MenuConfig}
+                  routerConfig={routerItems}
+                  userAccess={userAccess.routers}
+                  isLogin={isLogin}
+                  setIsLogin={setIsLogin}
+                />
               }
             >
               {routerItems.map((item: RouterItem) => (

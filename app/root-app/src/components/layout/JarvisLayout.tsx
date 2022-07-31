@@ -20,6 +20,8 @@ export interface JarvisLayoutProps {
   menuConfig: ItemType[]
   routerConfig: RouterItem[]
   userAccess?: string[]
+  isLogin?: boolean
+  setIsLogin?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type RouterItem = RouteObject
@@ -29,6 +31,8 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
   menuConfig,
   routerConfig,
   userAccess = [],
+  isLogin = false,
+  setIsLogin = () => {},
 }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false)
   const location = useLocation()
@@ -39,22 +43,11 @@ const JarvisLayout: React.FC<JarvisLayoutProps> = ({
 
   const navigate = useNavigate()
 
-  const [isLogin, setIsLogin] = useState<boolean>(true)
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (isLogin && localStorage.getItem('username') !== null) {
-        setIsLogin(true)
-      } else {
-        setIsLogin(false)
-        navigate('/account/login')
-        return
-      }
-    }, 5000)
-    return () => {
-      clearInterval(interval)
+    if (!isLogin) {
+      navigate('/account/login')
     }
-  }, [])
+  }, [isLogin])
 
   return (
     <Layout className='Layout'>
