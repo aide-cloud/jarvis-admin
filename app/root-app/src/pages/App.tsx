@@ -19,6 +19,7 @@ import {
   Routes,
 } from 'react-router-dom'
 import JarvisLayout from '../components/layout'
+import userAccessConfig from '@/config/user-access'
 import './App.less'
 
 export interface userAccessType {
@@ -28,10 +29,9 @@ export interface userAccessType {
 
 const App: React.FC = () => {
   const [routerItems, setRouterItems] = useState<RouterItem[]>([])
-  const [userAccess, setUserAccess] = useState<userAccessType>({
-    routers: ['/', '/home', '/dashboard/analysis'],
-    detail: {},
-  })
+  const [userAccess, setUserAccess] = useState<userAccessType>(
+    userAccessConfig[0]
+  )
 
   const noAuthRouterItems: RouterItem[] = [
     {

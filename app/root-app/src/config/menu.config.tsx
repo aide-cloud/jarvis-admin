@@ -1,6 +1,7 @@
 import {
   DashboardOutlined,
   MonitorOutlined,
+  SmileOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -82,6 +83,34 @@ const MenuConfig = [
       {
         key: '/monitor/metadata',
         label: <Link to='/monitor/metadata'>元数据</Link>,
+      },
+    ],
+  },
+  // 个人中心
+  {
+    key: '/personal',
+    label: '个人中心',
+    icon: <SmileOutlined />,
+    children: [
+      // 个人设置
+      {
+        key: '/personal/personal-setting',
+        label: <Link to='/personal/personal-setting'>个人设置</Link>,
+      },
+      // 我的收藏
+      {
+        key: '/personal/my-collection',
+        label: <Link to='/personal/my-collection'>我的收藏</Link>,
+      },
+      // 我的订阅
+      {
+        key: '/personal/my-subscription',
+        label: <Link to='/personal/my-subscription'>我的订阅</Link>,
+      },
+      // 我的设备
+      {
+        key: '/personal/my-device',
+        label: <Link to='/personal/my-device'>我的设备</Link>,
       },
     ],
   },
